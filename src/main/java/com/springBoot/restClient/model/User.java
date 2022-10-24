@@ -17,6 +17,10 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
+
+import com.springBoot.restClient.dto.UserDTO;
+
 @Entity
 @Table(name="Utilisateur")
 @XmlRootElement(name="user")
@@ -49,7 +53,13 @@ public class User implements Serializable {
 		this.active = active;
 		this.roles = roles;
 	}
-
+	
+	public User(UserDTO userDTO) {
+		this.setId(userDTO.getId());
+		this.setLogin(userDTO.getLogin());
+		this.setPassword(userDTO.getPassword());
+	}
+	
 	
 	public User(Long id, String login) {
 		super();
