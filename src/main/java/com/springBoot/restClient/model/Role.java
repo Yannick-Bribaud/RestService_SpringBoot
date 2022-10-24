@@ -1,5 +1,7 @@
 package com.springBoot.restClient.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="ROLE")
 @XmlRootElement(name="role")
-public class Role {
+public class Role implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ROLE_ID", updatable = false, nullable = false)
@@ -81,7 +85,6 @@ public class Role {
 			return false;
 		return true;
 	}
-	
 	
 	public int compareTo(Role role) {
 		return this.rolename.compareTo(role.getRolename());

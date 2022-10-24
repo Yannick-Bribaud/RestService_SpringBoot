@@ -72,7 +72,6 @@ public class User implements Serializable {
 		this.login = login;
 	}
 	
-
 	public Long getId() {
 		return id;
 	}
