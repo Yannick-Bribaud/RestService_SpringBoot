@@ -17,14 +17,14 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
-
 import com.springBoot.restClient.dto.UserDTO;
 
 @Entity
 @Table(name="Utilisateur")
 @XmlRootElement(name="user")
 public class User implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

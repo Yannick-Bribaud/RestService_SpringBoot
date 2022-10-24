@@ -9,8 +9,11 @@ import com.springBoot.restClient.model.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-	// findByRName(String roleNames);	
-	@Query("Select role from Role role")
+	 Role findByroleName(String rolename);	
 	
-	Stream<Role>getAllRolesStream();
+	 
+	 
+	 @Query("Select role from Role role")
+	
+	 Stream<Role>getAllRolesStream();
 }

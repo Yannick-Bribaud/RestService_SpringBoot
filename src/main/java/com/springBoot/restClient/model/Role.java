@@ -24,18 +24,16 @@ public class Role implements Serializable{
 	private int id;
 	
 	@Column(name="ROLE_NAME", updatable = true, nullable = false)
-	private String rolename;
+	private String roleName;
 
 	public Role() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Role(String rolename) {
 		super();
-		this.rolename = rolename;
+		this.roleName = rolename;
 	}
-
 	
 	public int getId() {
 		return id;
@@ -46,16 +44,16 @@ public class Role implements Serializable{
 	}
 
 	public String getRolename() {
-		return rolename;
+		return roleName;
 	}
 	@XmlElement
 	public void setRolename(String rolename) {
-		this.rolename = rolename;
+		this.roleName = rolename;
 	}
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", rolename=" + rolename + "]";
+		return "Role [id=" + id + ", rolename=" + roleName + "]";
 	}
 
 	@Override
@@ -63,7 +61,7 @@ public class Role implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((rolename == null) ? 0 : rolename.hashCode());
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
 		return result;
 	}
 
@@ -78,16 +76,17 @@ public class Role implements Serializable{
 		Role other = (Role) obj;
 		if (id != other.id)
 			return false;
-		if (rolename == null) {
-			if (other.rolename != null)
+		if (roleName == null) {
+			if (other.roleName != null)
 				return false;
-		} else if (!rolename.equals(other.rolename))
+		} else if (!roleName.equals(other.roleName))
 			return false;
 		return true;
 	}
 	
+
 	public int compareTo(Role role) {
-		return this.rolename.compareTo(role.getRolename());
+		return this.roleName.compareTo(role.getRolename());
 	}
 	
 	

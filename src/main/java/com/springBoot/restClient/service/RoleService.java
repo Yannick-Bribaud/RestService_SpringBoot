@@ -9,7 +9,7 @@ public interface RoleService {
 	
 	Role findByRoleName(String roleName);
 	
-	Collection<Role>getRoleNames();
+	Collection<Role>getAllRoleNames();
 	
 	Stream<Role>getAllRoleStream();
 }
