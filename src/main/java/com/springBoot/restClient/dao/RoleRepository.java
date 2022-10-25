@@ -12,7 +12,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
 	 Role findByroleName(String rolename);	
 	
 	 
-	 
 	 @Query("Select role from Role role")
 	
 	 Stream<Role>getAllRolesStream();

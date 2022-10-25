@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.springBoot.restClient.dao.UserRepository;
 import com.springBoot.restClient.model.User;
 
-@Service(value="userService")
+@Service(value="userService")//déclaration de cette class comme un bean de service
 public class UserServiceImpl implements UserServices{
 	
 	@Autowired
