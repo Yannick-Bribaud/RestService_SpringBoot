@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/*Pour pallier au domaine de cross-Plateforme*/
+
 @Component
 public class CrossDomainFilter extends OncePerRequestFilter{
 
