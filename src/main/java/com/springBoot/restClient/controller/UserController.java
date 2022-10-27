@@ -2,15 +2,12 @@ package com.springBoot.restClient.controller;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 import java.util.stream.Collectors;
-
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
-import org.apache.tomcat.util.net.TLSClientHelloExtractor.ExtractorResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -67,7 +66,7 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.CREATED);
 	}
 	
-	@GetMapping(value="/Users/{loginName}")
+	@GetMapping(value="/users/{loginName}")
 	public ResponseEntity<User>findByUserLogin(@PathVariable("loginName")String login){
 		User user = userService.findByLogin(login);
 		logger.debug("Utilisateur trouvé :" +user);
@@ -75,9 +74,10 @@ public class UserController {
 		return new ResponseEntity<User>(user,HttpStatus.FOUND);
 	}
 	
+	@PutMapping(value="/users/{id}")
 	public ResponseEntity<User>updateUser(@PathVariable(value = "id")Long id,@RequestBody User user){
-		User userToUpdate=userService.getUserById(id);
 		
+		User userToUpdate=userService.getUserById(id);
 		if(userToUpdate==null) {
 			logger.debug("l'utilisateur avec l'identifiant"+id+ "n'existe pas");
 			return new ResponseEntity<User>(user,HttpStatus.NOT_FOUND);
@@ -89,9 +89,14 @@ public class UserController {
 		 userToUpdate.setActive(user.getActive());
 	     User userUpdated = userService.saveOrUpdateUser(userToUpdate);
 		
-		return new ResponseEntity<User>(userToUpdate,HttpStatus.OK);
+		return new ResponseEntity<User>(userUpdated,HttpStatus.OK);
 	}
 	
+	@DeleteMapping(value="/users/{id}")
+	public ResponseEntity<Void>deleteUser(@PathVariable(value="id")Long id){
+			userService.deleteUser(id);
+		return new ResponseEntity<Void>(HttpStatus.GONE);
+	}
 	
 	
 	private Set<Role>extractRole_Java8(Set<Role>rolesSetFromUser, Stream<Role>roleStreamFromDB){

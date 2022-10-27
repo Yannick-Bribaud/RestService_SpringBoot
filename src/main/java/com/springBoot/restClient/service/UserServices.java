@@ -10,7 +10,7 @@ public interface UserServices{
 	
 	Collection<User>getAllUsers();
 	
-	Optional<User> getUserById(Long id);
+	User getUserById(Long id);
 	
 	User findByLogin(String login);
 	
