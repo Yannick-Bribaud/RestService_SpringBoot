@@ -2,7 +2,7 @@ package com.springBoot.restClient.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class BusinessResourceExceptionResponse extends RuntimeException {
+public class BusinessResourceException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -11,32 +11,28 @@ public class BusinessResourceExceptionResponse extends RuntimeException {
 	private String messageError;
 	private String RequestURL;
 	private HttpStatus status;
-	
-	
-	public BusinessResourceExceptionResponse() {
-		super();
-	}
-	public BusinessResourceExceptionResponse(String message) {
+		
+	public BusinessResourceException(String message) {
 		super(message);
 	}
 	
-	public BusinessResourceExceptionResponse(Long resourcesId, String message) {
+	public BusinessResourceException(Long resourceId, String message) {
 		super(message);
-		this.resourceId =resourcesId;
+		this.resourceId = resourceId;
 	}
 	
-	public BusinessResourceExceptionResponse(Long resourcesId,String errorCode, String message) {
+	public BusinessResourceException(Long resourceId, String errorCode, String message) {
 		super(message);
-		this.resourceId = resourcesId;
-		this.errorCode  = errorCode;
+		this.resourceId = resourceId;
+		this.errorCode = errorCode;
 	}
 	
-	public BusinessResourceExceptionResponse(String errorCode,String message) {
+	public BusinessResourceException(String errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
 	}
 	
-	public BusinessResourceExceptionResponse(String errorCode,String message, HttpStatus status) {
+	public BusinessResourceException(String errorCode, String message,HttpStatus status) {
 		super(message);
 		this.errorCode = errorCode;
 		this.status = status;
@@ -45,41 +41,32 @@ public class BusinessResourceExceptionResponse extends RuntimeException {
 	public Long getResourceId() {
 		return resourceId;
 	}
-
 	public void setResourceId(Long resourceId) {
 		this.resourceId = resourceId;
 	}
-
 	public String getErrorCode() {
 		return errorCode;
 	}
-
 	public void setErrorCode(String errorCode) {
 		this.errorCode = errorCode;
 	}
-
-	public HttpStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(HttpStatus status) {
-		this.status = status;
-	}
-	
 	public String getMessageError() {
 		return messageError;
 	}
-	
 	public void setMessageError(String messageError) {
 		this.messageError = messageError;
 	}
-	
 	public String getRequestURL() {
 		return RequestURL;
 	}
-	
 	public void setRequestURL(String requestURL) {
 		RequestURL = requestURL;
+	}
+	public HttpStatus getStatus() {
+		return status;
+	}
+	public void setStatus(HttpStatus status) {
+		this.status = status;
 	}
 	
 	

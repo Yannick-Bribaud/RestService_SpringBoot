@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice(basePackages = {"com.springBoot.restClient"})
+//@ControllerAdvice(basePackages = {"com.springBoot.restClient"})
 public class GlobalHandlerControllerException extends ResponseEntityExceptionHandler {
 	
 	@InitBinder
@@ -43,6 +43,16 @@ public class GlobalHandlerControllerException extends ResponseEntityExceptionHan
 		
 		return new ResponseEntity<BusinessResourceExceptionResponse>(response, 
 				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler(BusinessResourceException.class)
+	public ResponseEntity<BusinessResourceExceptionResponse>resourceNotFound(HttpServletRequest req, BusinessResourceException ex){
+		BusinessResourceExceptionResponse response = new BusinessResourceExceptionResponse();
+		response.setStatus(ex.getStatus());
+		response.setErrorCode(ex.getErrorCode());
+		response.setMessageError(ex.getMessageError());
+		response.setRequestURL(req.getRequestURL().toString());
+		return new ResponseEntity<BusinessResourceExceptionResponse>(response,ex.getStatus());
 		
 	}
 	
