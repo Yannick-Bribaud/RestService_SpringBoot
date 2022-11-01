@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-//@ControllerAdvice(basePackages = {"com.springBoot.restClient"})
+@ControllerAdvice(basePackages = {"com.springBoot.restClient"})
 public class GlobalHandlerControllerException extends ResponseEntityExceptionHandler {
 	
 	@InitBinder
