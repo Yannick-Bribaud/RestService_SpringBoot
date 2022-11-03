@@ -1,6 +1,10 @@
 package com.springBoot.restClient.testDao;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -36,7 +40,8 @@ public class UserRepositoryTest {
 	public void findAllUser() {
 		List<User>user=userRepository.findAll();
 		
-		//assertThat(4,user.size());	
+		//assertThat(4,is(user.size()));	
+		//assertThat(4,is(user.size()));
 	}
 	
 	@Test
@@ -46,6 +51,20 @@ public class UserRepositoryTest {
 		User userSaved = userRepository.save(user);
 		assertNotNull(userSaved.getId());
 	}
+	
+	@Test
+	public void testFindBylogin() {
+		User userFromDB = userRepository.findByLogin("user2");
+		assertEquals("user2", userFromDB.getLogin());
+	}
+	
+	@Test
+	public void testDeleteUser() {
+		userRepository.deleteById(user.getId());
+		User userFromDB = userRepository.findByLogin(user.getLogin());
+		assertNull(userFromDB);
+	}
+	
 	
 	
 	
